@@ -1,6 +1,7 @@
 <template>
   <div class="Make-Plan">
     Make Plan
+    <div></div>
   </div>
 </template>
 
