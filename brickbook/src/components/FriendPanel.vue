@@ -41,10 +41,11 @@
 
 <script>
 import Boyz from '../components/Boyz'
+import WhatsHappeningTn from '../components/WhatsHappeningTn.vue'
+import WhereTheyAt from '../components/WhereTheyAt.vue'
 
 export default {
     data: () => ({
-        friend: 'username is active/not active',
         tabs: [
           {title: "Boyz"},
           {title: "WhereTheyAt"},
@@ -59,7 +60,9 @@ export default {
         },
     },
     components:{
-        Boyz
+        Boyz,
+        WhereTheyAt,
+        WhatsHappeningTn
     }
     
 

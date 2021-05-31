@@ -1,7 +1,7 @@
 <template>
-                <div id="app-2">
-                    <span v-bind:title="friend">
-                    <a class="panel-block is-active">
+                <div class="Boyz">
+                    
+                    <a class="panel-block">
                         <!--Img for profile-->
                         <figure class="image is-32x32">
                             <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
@@ -21,15 +21,13 @@
                             </span>
                         </div>
                     </a>
-                    </span>
+                    
                 </div>
 </template>
 
 <script>
 export default {
-    data: () => ({
-        friend: 'username is active/not active',
-    })
+    
 }
 </script>
 
