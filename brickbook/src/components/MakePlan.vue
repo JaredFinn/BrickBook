@@ -1,7 +1,7 @@
 <template>
   <div class="Make-Plan">
     Make Plan
-    <div>bruh</div>
+    
   </div>
 </template>
 
