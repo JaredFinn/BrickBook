@@ -13,8 +13,10 @@
 import Vue from 'vue'
 import { gmapsMap } from 'x5-gmaps';
 import x5GMaps from 'x5-gmaps'
+
 Vue.use(x5GMaps, 'AIzaSyCVFDFIOQ-bzrsTfPI_TGfTQTrOGotLiJw')
 Vue.use(x5GMaps, { key: 'AIzaSyCVFDFIOQ-bzrsTfPI_TGfTQTrOGotLiJw', libraries: ['places'] })
+
 
 new Vue({
   render: (h) => h(gmapsMap),

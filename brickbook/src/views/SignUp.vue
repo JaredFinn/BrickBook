@@ -1,10 +1,16 @@
 <template>
-    <section id="signup-hero" class="hero is-small is-info">
-        <div class="hero-body">
-            <p class="title">
-                Sign Up
-            </p>
-            <form class="box">
+<div>
+        <div>
+        <nav-bar/>
+        </div>
+
+
+        <div id="login-box" class="block is-info has-background-info">
+            <div class="hero-foot">
+                <div class="columns">
+                    <div class="column"></div>
+                    <div class="column">
+                        <form class="box">
                 <div class="columns">
                     <div class="column">
                         <div class="field">
@@ -77,24 +83,37 @@
                 <button  class="button is-info">Sign Up</button>
 
             </form>
+                    </div>
+                    <div class="column"></div>
+                </div>
+
+                </div>
+            </div>
         </div>
-    </section>
+
 </template>
 
 <script>
+import NavBar from '../components/NavBar.vue'
 
 export default {
+  components: { NavBar },
     data: () => ({
 
     }),
     methods: {
-        
     }
 }
 </script>
 
 <style>
-#signup-hero {
-    margin: 20px;
+.button {
+    margin: 10px;
+}
+#fbsquare{
+    margin-right: 10px;
+}
+#login-box{
+   height: 200px;
 }
 </style>
