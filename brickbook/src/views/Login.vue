@@ -1,18 +1,17 @@
 <template>
 <div>
         <div>
-        <nav-bar/>
+            <nav-bar/>
         </div>
-
 
         <div id="login-box" class="block is-info has-background-info">
             <div class="hero-foot">
                 <div class="columns">
                     <div class="column"></div>
                     <div class="column">
-                        <form class="box" >
+                        <form @submit.prevent="login" class="box" >
 
-                        <article class="message is-danger">
+                        <!--<article class="message is-danger">
                             <div class="message-header">
                                 <p>Try Again</p>
                                 <button class="delete" aria-label="delete"></button>
@@ -20,7 +19,7 @@
                             <div class="message-body">
                                 Login Failed. Your Username or Password is incorrect. Try Again.
                             </div>
-                        </article>
+                        </article>-->
                         <div>    
                         </div>
 
@@ -69,13 +68,18 @@
 
 <script>
 import NavBar from '../components/NavBar.vue'
+import { Login } from '../models/Session'
 
 export default {
   components: { NavBar },
     data: () => ({
-
+        handle: null,
+        password: null
     }),
     methods: {
+        login(){
+            Login(this.handle, this.password)
+        }
     }
 }
 </script>
