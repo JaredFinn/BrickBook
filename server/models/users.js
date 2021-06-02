@@ -88,9 +88,10 @@ module.exports.Login = async (handle, password) => {
 
     const data = { ...user, password: undefined };
 
-    const token = jwt.sign(data, JWT_SECRET);
+    //const token = jwt.sign(data, JWT_SECRET);
 
-    return { user: data, token};
+    return { user: data };
+    //return { user: data, token};
 }
 
 module.exports.FromJWT = async (token) => {

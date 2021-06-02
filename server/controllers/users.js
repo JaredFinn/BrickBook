@@ -8,12 +8,12 @@ const model = require('../models/users');
 const app = express.Router();
 
     app
-        .get('/', LoginRequired, (req, res) => {
+        .get('/', (req, res) => {
             res.send(model.GetAll() );
             console.log(req.headers);
         } )
-        .get('/:user_id', LoginRequired, (req, res) => res.send(model.Get(req.params.user_id) ))
-        .post('/', LoginRequired, (req, res) => {
+        .get('/:user_id', (req, res) => res.send(model.Get(req.params.user_id) ))
+        .post('/', (req, res) => {
             res.send( model.Add(req.body));
         })
         .post('/register', (req, res, next) => {
@@ -26,8 +26,8 @@ const app = express.Router();
             .then(user=> res.send(user))
             .catch(next);
         })
-        .patch('/:user_id', LoginRequired, (req, res)=> res.send( model.Update( req.params.user_id, req.body ) ) )
-        .delete('/:user_id', LoginRequired, (req, res)=> res.send( model.Delete(req.params.user_id) ) )
+        .patch('/:user_id', (req, res)=> res.send( model.Update( req.params.user_id, req.body ) ) )
+        .delete('/:user_id', (req, res)=> res.send( model.Delete(req.params.user_id) ) )
 
 
 module.exports = app;

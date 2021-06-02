@@ -20,14 +20,13 @@ app
 
     .use(async (req, res, next)=>{
 
-      const token = req.headers.authorization?.split(' ')[1];
-      req.user = token && await usersModel.FromJWT(token);
+      //const token = req.headers.authorization?.split(' ')[1];
+      //req.user = token && await usersModel.FromJWT(token);
       req.user = { isAdmin: true}
       next();
     })
 
     .use('/users', usersCtrl)
-    .use('/posts',  postsCtrl)
 
     //All the way at the end of pipeline
     .get('*', (req, res) => {

@@ -68,7 +68,7 @@
 
 <script>
 import NavBar from '../components/NavBar.vue'
-import { Login } from '../models/Session'
+import Session, { Login } from '../models/Session'
 
 export default {
   components: { NavBar },
@@ -79,6 +79,7 @@ export default {
     methods: {
         login(){
             Login(this.handle, this.password)
+            console.log("Login Successful : " + Session.user.handle + " : " + Session.user.password)
         }
     }
 }
