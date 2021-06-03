@@ -71,16 +71,16 @@
                         <span class="icon is-small is-left">
                             <i class="fas fa-lock"></i>
                         </span>
-                            <span class="icon is-small is-right">
+                            <span v-if="match()" class="icon is-small is-right">
                                 <i class="fas fa-check"></i>
                             </span>
-                            <span class="icon is-small is-right">
+                            <span v-else class="icon is-small is-right">
                                 <i class="fas fa-times"></i>
                             </span>
                     </p>
                 </div>
 
-                <button  class="button is-info">Sign Up</button>
+                <button  class="button is-info" @click="formHandle(), signup(firstName, lastName, email, handle, password)">Sign Up</button>
 
             </form>
                     </div>
@@ -95,14 +95,34 @@
 
 <script>
 import NavBar from '../components/NavBar.vue'
+import { AddUser } from '../models/Users'
 
 export default {
-  components: { NavBar },
+    components: { NavBar },
     data: () => ({
-
+        username: null,
+        firstName: null,
+        lastName: null,
+        email: null,
+        handle: "@",
+        password: null,
+        passwordConfirm: null,
     }),
     methods: {
-    }
+        match() {
+            if(this.password == this.passwordConfirm)
+                return true
+            else    
+                this.noGo = false
+        },
+        async signup(firstName, lastName, email, handle, password) {
+            await AddUser(firstName, lastName, email, handle, password)
+        },
+        formHandle(){
+            this.handle = this.handle + this.username
+        }
+    },
+
 }
 </script>
 

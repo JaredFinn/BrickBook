@@ -26,6 +26,11 @@ const app = express.Router();
             .then(user=> res.send(user))
             .catch(next);
         })
+        .post('/logout', (req, res, next) => {
+            model.Logout(req.body.handle, req.body.password)
+            .then(user=> res.send(user))
+            .catch(next);
+        })
         .patch('/:user_id', (req, res)=> res.send( model.Update( req.params.user_id, req.body ) ) )
         .delete('/:user_id', (req, res)=> res.send( model.Delete(req.params.user_id) ) )
 

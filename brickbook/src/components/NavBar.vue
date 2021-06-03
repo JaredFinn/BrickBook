@@ -17,7 +17,8 @@
               </span>
             </div>
             <div id="navbarMenuHeroB" class="navbar-menu">
-              <div class="navbar-end">
+
+              <div v-if="!Session.user" class="navbar-end">
                 <span class="navbar-item">
                   <router-link to="/signup" id="signup-btn" class="button is-info is-inverted">
                     <span class="icon">
@@ -33,6 +34,14 @@
                   </router-link>
                 </span>
               </div>
+              <div v-else>
+                <b> {{Session.user.firstName}} {{Session.user.lastName}} </b>
+                <br />
+                {{Session.user.handle}}
+                (<a @click="logout">
+                    Log out
+                </a>)
+              </div>
             </div>
           </div>
         </nav>
@@ -42,8 +51,11 @@
 </template>
 
 <script>
+import Session, { Logout } from "../models/Session";
+
 export default {
   data: () => ({
+        Session,
         indicator: false,
         indicatorBackground: false,
         indicatorInside: false,
@@ -69,6 +81,9 @@ export default {
       selectTab(tab){
         this.selectedTab = tab;
       },
+      logout() {
+            Logout();
+      }
     }
 }
 </script>

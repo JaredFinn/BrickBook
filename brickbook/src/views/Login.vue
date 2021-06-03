@@ -9,7 +9,7 @@
                 <div class="columns">
                     <div class="column"></div>
                     <div class="column">
-                        <form @submit.prevent="login" class="box" >
+                        <form class="box">
 
                         <!--<article class="message is-danger">
                             <div class="message-header">
@@ -42,7 +42,7 @@
                             </p>
                         </div>
                     
-                        <button class="button is-info">Log in</button><br>
+                        <button class="button is-info" @click.prevent="login(handle, password)">Log in</button><br>
                         <button class="button is-info is-half is-large">
                             <span>
                                 <i id="fbsquare" class="fab fa-facebook-square"></i>

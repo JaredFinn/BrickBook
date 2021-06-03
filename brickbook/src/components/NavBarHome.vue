@@ -18,7 +18,7 @@
               </span>
             </div>
             <div id="navbarMenuHeroB" class="navbar-menu">
-              <div class="navbar-end">
+              <div v-if="!Session.user" class="navbar-end">
                 <span class="navbar-item">
                   <router-link to="/signup" id="signup-btn" class="button is-info is-inverted">
                     <span class="icon">
@@ -33,6 +33,12 @@
                     <span>Login</span>
                   </router-link>
                 </span>
+              </div>
+              <div id="account-info" v-else class="navbar-end">
+                <b> {{Session.user.firstName}} {{Session.user.lastName}} </b>
+                (<a @click="logout">
+                    Log out
+                </a>)
               </div>
             </div>
           </div>
@@ -101,9 +107,11 @@ import Feed from '../components/Feed.vue';
 import NewPost from '../components/NewPost'
 import FriendPanel from '../components/FriendPanel.vue';
 import FeedInfo from '../components/FeedInfo.vue';
+import Session, { Logout } from "../models/Session";
 
 export default {
   data: () => ({
+        Session,
         indicator: false,
         indicatorBackground: false,
         indicatorInside: false,
@@ -129,6 +137,9 @@ export default {
       selectTab(tab){
         this.selectedTab = tab;
       },
+      logout() {
+            Logout();
+      }
     },
     components:{
       Feed,
@@ -152,5 +163,8 @@ export default {
 }
 #brick-title{
   margin-top: 30px;
+}
+#account-info{
+  margin-top: 40px;
 }
 </style>

@@ -49,6 +49,7 @@ module.exports.Register =  async ( user ) => {
         throw {code: 422, msg: "First Name is Required"}
     }
     list.push(user);
+    console.log("Signed Up: " + { user })
     return { ...user, password: undefined }
 }
 module.exports.Update = (user_id, user ) => {
@@ -78,20 +79,21 @@ module.exports.Login = async (handle, password) => {
     const user = list.find(x => x.handle == handle)
     if(!user) throw {code: 401, msg: "Sorry there is no user with that handle"};
 
-    if(!(user.password == password) ){
-        throw {code: 401, msg: "Wrong Password"};
+    if(! await bcrypt.compare(password, user.password)){
+       throw {code: 401, msg: "Wrong Password"};
     }
-
-    //if(! await bcrypt.compare(password, user.password)){
-    //   throw {code: 401, msg: "Wrong Password"};
-    //}
 
     const data = { ...user, password: undefined };
 
-    //const token = jwt.sign(data, JWT_SECRET);
+    const token = jwt.sign(data, JWT_SECRET);
 
-    return { user: data };
-    //return { user: data, token};
+    return { user: data, token};
+}
+
+module.exports.Logout = async (handle, password) => {
+    console.log("Logging out: " +{ handle, password})
+
+    return { user: null, token: null};
 }
 
 module.exports.FromJWT = async (token) => {
