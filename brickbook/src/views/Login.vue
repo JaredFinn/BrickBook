@@ -9,7 +9,7 @@
                 <div class="columns">
                     <div class="column"></div>
                     <div class="column">
-                        <form class="box">
+                        <form class="box" @submit.prevent='login'>
 
                         <!--<article class="message is-danger">
                             <div class="message-header">
@@ -68,18 +68,18 @@
 
 <script>
 import NavBar from '../components/NavBar.vue'
-import Session, { Login } from '../models/Session'
+import { Login } from '../models/Session'
 
 export default {
-  components: { NavBar },
+    components: { NavBar },
     data: () => ({
         handle: null,
-        password: null
+        password: null,
     }),
     methods: {
         login(){
             Login(this.handle, this.password)
-            console.log("Login Successful : " + Session.user.handle + " : " + Session.user.password)
+            //console.log("Login Successful : " + Session.user.handle + " : " + Session.user.password)
         }
     }
 }

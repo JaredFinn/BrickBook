@@ -1,21 +1,26 @@
 <template>
     <div class="card">
         <div class="card-content">
-            <form @submit.prevent="">
-
+            <form @submit.prevent="addPost">
                     <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label">Picture URL</label>
-                    </div>
+                        <div class="field-label is-normal">
+                            <label class="label">Picture URL</label>
+                        </div>
                     <div class="field-body">
                         <div class="field">
-                        <div class="control">
-                            <input class="input" type="text" placeholder="http://google.com">
-                        </div>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="http://google.com" v-model="newPost.img">
+                            </div>
                         <p class="help is-danger">
                             This field is required
                         </p>
                         </div>
+                        <b-field>
+                            <b-switch :value="false"
+                            type="is-success" v-model="location">
+                                Share Location
+                            </b-switch>
+                        </b-field>
                     </div>
                     </div>
 
@@ -59,7 +64,28 @@
 </template>
 
 <script>
+import Session from "../models/Session";
+import { AddPost, DeletePost } from "../models/Posts";
+
 export default {
+    data: () => ({
+        posts: [],
+        newPost: {
+            user: Session.user
+        },
+        Session
+    }),
+    methods: {
+        async addPost() {
+            const post = await AddPost(this.newPost)
+            this.posts.unshift(post);
+            this.newPost = { user: Session.user }
+        },
+        async deletePost(i) {
+            await DeletePost(i);
+            this.posts.splice(i, 1);
+        }
+    }
 
 }
 </script>

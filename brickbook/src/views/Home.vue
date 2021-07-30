@@ -25,6 +25,10 @@ export default {
 </script>
 
 <style>
+.home{
+  background-color: #fffff9;
+}
+
 #friend-panel{
   margin-top: 20px;
   margin-left: 20px;
